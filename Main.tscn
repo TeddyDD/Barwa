@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://controls/Color.tscn" type="PackedScene" id=2]
+[ext_resource path="res://images/load.svg" type="Texture" id=2]
+[ext_resource path="res://images/save.svg" type="Texture" id=3]
+[ext_resource path="res://images/add.svg" type="Texture" id=4]
+[ext_resource path="res://controls/Color.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -11,7 +14,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="UI" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -20,7 +23,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="Color List" type="VBoxContainer" parent="UI"]
 editor/display_folded = true
 margin_left = 7.0
 margin_top = 7.0
@@ -32,14 +35,13 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Top Panel" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
-editor/display_folded = true
+[node name="Top Panel" type="PanelContainer" parent="UI/Color List"]
 margin_right = 386.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 0, 45 )
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Top Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Color List/Top Panel"]
 editor/display_folded = true
 margin_left = 7.0
 margin_top = 7.0
@@ -48,114 +50,129 @@ margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Save" type="Button" parent="PanelContainer/VBoxContainer/Top Panel/HBoxContainer"]
-margin_right = 59.0
+[node name="Save" type="Button" parent="UI/Color List/Top Panel/HBoxContainer"]
+margin_right = 30.0
 margin_bottom = 31.0
-text = "Save as"
+hint_tooltip = "Save palette"
+icon = ExtResource( 2 )
 
-[node name="Load" type="Button" parent="PanelContainer/VBoxContainer/Top Panel/HBoxContainer"]
-margin_left = 63.0
-margin_right = 105.0
+[node name="Load" type="Button" parent="UI/Color List/Top Panel/HBoxContainer"]
+margin_left = 34.0
+margin_right = 64.0
 margin_bottom = 31.0
-text = "Load"
+hint_tooltip = "Load palette"
+icon = ExtResource( 3 )
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="UI/Color List/Top Panel/HBoxContainer"]
+margin_left = 68.0
+margin_right = 72.0
+margin_bottom = 31.0
+
+[node name="New" type="Button" parent="UI/Color List/Top Panel/HBoxContainer"]
+margin_left = 76.0
+margin_right = 106.0
+margin_bottom = 31.0
+hint_tooltip = "Add color"
+icon = ExtResource( 4 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Color List"]
+editor/display_folded = true
 margin_top = 49.0
 margin_right = 386.0
 margin_bottom = 586.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="List" type="VBoxContainer" parent="UI/Color List/ScrollContainer"]
 margin_right = 374.0
 margin_bottom = 842.0
 size_flags_horizontal = 3
 
-[node name="Color" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_right = 374.0
 margin_bottom = 43.0
 
-[node name="Color2" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color2" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 47.0
 margin_right = 374.0
 margin_bottom = 90.0
 
-[node name="Color3" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color3" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 94.0
 margin_right = 374.0
 margin_bottom = 137.0
 
-[node name="Color4" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color4" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 141.0
 margin_right = 374.0
 margin_bottom = 184.0
 
-[node name="Color5" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color5" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 188.0
 margin_right = 374.0
 margin_bottom = 231.0
 
-[node name="Color6" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color6" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 235.0
 margin_right = 374.0
 margin_bottom = 278.0
 
-[node name="Color7" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color7" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 282.0
 margin_right = 374.0
 margin_bottom = 325.0
 
-[node name="Color8" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color8" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 329.0
 margin_right = 374.0
 margin_bottom = 372.0
 
-[node name="Color9" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color9" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 376.0
 margin_right = 374.0
 margin_bottom = 419.0
 
-[node name="Color10" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color10" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 423.0
 margin_right = 374.0
 margin_bottom = 466.0
 
-[node name="Color11" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color11" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 470.0
 margin_right = 374.0
 margin_bottom = 513.0
 
-[node name="Color12" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color12" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 517.0
 margin_right = 374.0
 margin_bottom = 560.0
 
-[node name="Color13" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color13" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 564.0
 margin_right = 374.0
 margin_bottom = 607.0
 
-[node name="Color14" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color14" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 611.0
 margin_right = 374.0
 margin_bottom = 654.0
 
-[node name="Color15" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color15" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 658.0
 margin_right = 374.0
 margin_bottom = 701.0
 
-[node name="Color16" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color16" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 705.0
 margin_right = 374.0
 margin_bottom = 748.0
 
-[node name="Color17" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color17" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 752.0
 margin_right = 374.0
 margin_bottom = 795.0
 
-[node name="Color18" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Color18" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
 margin_top = 799.0
 margin_right = 374.0
 margin_bottom = 842.0
