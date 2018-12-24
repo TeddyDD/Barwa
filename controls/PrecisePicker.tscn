@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://controls/PreciseColorPicker.gd" type="Script" id=1]
+
+[node name="Precise Picker" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 393.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PreciseColorPicker" type="ColorPicker" parent="VBoxContainer"]
+margin_right = 386.0
+margin_bottom = 458.0
+custom_constants/margin = 10
+script = ExtResource( 1 )
+
+[connection signal="preset_added" from="VBoxContainer/PreciseColorPicker" to="VBoxContainer/PreciseColorPicker" method="_on_PreciseColorPicker_preset_added"]
+[connection signal="preset_removed" from="VBoxContainer/PreciseColorPicker" to="VBoxContainer/PreciseColorPicker" method="_on_PreciseColorPicker_preset_removed"]
