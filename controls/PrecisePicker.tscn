@@ -14,11 +14,25 @@ margin_bottom = 593.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PreciseColorPicker" type="ColorPicker" parent="VBoxContainer"]
+[node name="ColorPicker" type="ColorPicker" parent="VBoxContainer"]
 margin_right = 386.0
 margin_bottom = 458.0
 custom_constants/margin = 10
 script = ExtResource( 1 )
 
-[connection signal="preset_added" from="VBoxContainer/PreciseColorPicker" to="VBoxContainer/PreciseColorPicker" method="_on_PreciseColorPicker_preset_added"]
-[connection signal="preset_removed" from="VBoxContainer/PreciseColorPicker" to="VBoxContainer/PreciseColorPicker" method="_on_PreciseColorPicker_preset_removed"]
+[node name="Ok" type="Button" parent="VBoxContainer"]
+margin_top = 462.0
+margin_right = 386.0
+margin_bottom = 502.0
+rect_min_size = Vector2( 0, 40 )
+text = "Ok"
+
+[node name="Cancel" type="Button" parent="VBoxContainer"]
+margin_top = 506.0
+margin_right = 386.0
+margin_bottom = 546.0
+rect_min_size = Vector2( 0, 40 )
+text = "Cancel"
+
+[connection signal="preset_added" from="VBoxContainer/ColorPicker" to="VBoxContainer/ColorPicker" method="_on_PreciseColorPicker_preset_added"]
+[connection signal="preset_removed" from="VBoxContainer/ColorPicker" to="VBoxContainer/ColorPicker" method="_on_PreciseColorPicker_preset_removed"]
