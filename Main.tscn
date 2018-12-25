@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://images/load.svg" type="Texture" id=2]
 [ext_resource path="res://images/save.svg" type="Texture" id=3]
 [ext_resource path="res://images/add.svg" type="Texture" id=4]
-[ext_resource path="res://controls/Color.tscn" type="PackedScene" id=5]
+[ext_resource path="res://controls/PrecisePicker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://controls/MousePicker.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -24,7 +25,6 @@ __meta__ = {
 }
 
 [node name="Color List" type="VBoxContainer" parent="UI"]
-editor/display_folded = true
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 393.0
@@ -39,10 +39,8 @@ __meta__ = {
 margin_right = 386.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 0, 45 )
-size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Color List/Top Panel"]
-editor/display_folded = true
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 379.0
@@ -76,104 +74,59 @@ hint_tooltip = "Add color"
 icon = ExtResource( 4 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/Color List"]
-editor/display_folded = true
 margin_top = 49.0
 margin_right = 386.0
 margin_bottom = 586.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="List" type="VBoxContainer" parent="UI/Color List/ScrollContainer"]
-margin_right = 374.0
-margin_bottom = 842.0
+[node name="List" type="GridContainer" parent="UI/Color List/ScrollContainer"]
+margin_right = 386.0
+margin_bottom = 537.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Color" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_right = 374.0
-margin_bottom = 43.0
+[node name="Precise Picker" parent="UI" instance=ExtResource( 5 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 44.0
+margin_top = 20.0
+margin_right = 356.0
+margin_bottom = 580.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Color2" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 47.0
-margin_right = 374.0
-margin_bottom = 90.0
+[node name="Mouse Picker" type="PanelContainer" parent="UI"]
+editor/display_folded = true
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 393.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Color3" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 94.0
-margin_right = 374.0
-margin_bottom = 137.0
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Mouse Picker"]
+editor/display_folded = true
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 379.0
+margin_bottom = 579.0
 
-[node name="Color4" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 141.0
-margin_right = 374.0
-margin_bottom = 184.0
+[node name="MousePicker" parent="UI/Mouse Picker/VBoxContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 372.0
+margin_bottom = 528.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Color5" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 188.0
-margin_right = 374.0
-margin_bottom = 231.0
+[node name="Button" type="Button" parent="UI/Mouse Picker/VBoxContainer"]
+margin_top = 532.0
+margin_right = 372.0
+margin_bottom = 572.0
+rect_min_size = Vector2( 0, 40 )
+text = "Ok"
 
-[node name="Color6" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 235.0
-margin_right = 374.0
-margin_bottom = 278.0
-
-[node name="Color7" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 282.0
-margin_right = 374.0
-margin_bottom = 325.0
-
-[node name="Color8" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 329.0
-margin_right = 374.0
-margin_bottom = 372.0
-
-[node name="Color9" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 376.0
-margin_right = 374.0
-margin_bottom = 419.0
-
-[node name="Color10" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 423.0
-margin_right = 374.0
-margin_bottom = 466.0
-
-[node name="Color11" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 470.0
-margin_right = 374.0
-margin_bottom = 513.0
-
-[node name="Color12" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 517.0
-margin_right = 374.0
-margin_bottom = 560.0
-
-[node name="Color13" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 564.0
-margin_right = 374.0
-margin_bottom = 607.0
-
-[node name="Color14" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 611.0
-margin_right = 374.0
-margin_bottom = 654.0
-
-[node name="Color15" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 658.0
-margin_right = 374.0
-margin_bottom = 701.0
-
-[node name="Color16" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 705.0
-margin_right = 374.0
-margin_bottom = 748.0
-
-[node name="Color17" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 752.0
-margin_right = 374.0
-margin_bottom = 795.0
-
-[node name="Color18" parent="UI/Color List/ScrollContainer/List" instance=ExtResource( 5 )]
-margin_top = 799.0
-margin_right = 374.0
-margin_bottom = 842.0
-
+[connection signal="pressed" from="UI/Color List/Top Panel/HBoxContainer/New" to="." method="_on_New_pressed"]
