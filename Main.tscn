@@ -80,7 +80,7 @@ margin_bottom = 586.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="List" type="GridContainer" parent="UI/Color List/ScrollContainer"]
+[node name="Colors List" type="GridContainer" parent="UI/Color List/ScrollContainer"]
 margin_right = 386.0
 margin_bottom = 537.0
 size_flags_horizontal = 3
@@ -121,6 +121,9 @@ margin_right = 372.0
 margin_bottom = 528.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+control = true
+saturation_speed = 0.005
+safe_margin = 25
 
 [node name="Button" type="Button" parent="UI/Mouse Picker/VBoxContainer"]
 margin_top = 532.0
