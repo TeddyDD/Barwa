@@ -10,6 +10,9 @@ func _ready():
 	
 	var mp = $"UI/Mouse Picker Wrapper/VBoxContainer/MousePicker"
 	mp.connect("set_color", self, "set_color")
+	
+	var pp = $"UI/Precise Picker"
+	pp.connect("set_color", self, "set_color")
 
 
 func edit(id, old_color, precise):
@@ -18,7 +21,6 @@ func edit(id, old_color, precise):
 	picker.old_color = old_color
 	
 func set_color(id, color):
-	prints(id, color)
 	palette.set_color(id, color)
 	
 # makes picker visible and returns node
@@ -60,24 +62,31 @@ class PalleteController:
 		_register_view_signals(view, id)
 		views[id] = view
 	
-	func edit_color(id):
+	func edit_color(id, precise=false):
 		var c = palette.get_color(id)
-		edit_handler.edit(id, c, false)
+		edit_handler.edit(id, c, precise)
 		
 	func set_color(id, color):
 		palette.set_color(id, color)
 		var view = views[id]
 		view.color_rect.color = color
 		
-		
 	func remove_color(id):
-		pass
+		var view = views[id]
+		palette.remove_color(id)
+		views.erase(id)
+		_unregister_view_signals(view,id)
+		view.queue_free()
 		
 	func _register_view_signals(view, id):
 		view.pick.connect("pressed", self, "edit_color", [id])
+		view.precise.connect("pressed", self, "edit_color", [id,true])
+		view.remove.connect("pressed", self, "remove_color", [id])
 	
 	func _unregister_view_signals(view, id):
 		view.pick.disconnect("pressed", self, "edit_color")
+		view.precise.disconnect("pressed", self, "edit_color")
+		view.remove.disconnect("pressed", self, "remove_color")
 
 class Palete:
 	var colors = {} # id -> color
