@@ -36,6 +36,7 @@ __meta__ = {
 }
 
 [node name="Top Panel" type="PanelContainer" parent="UI/Color List"]
+editor/display_folded = true
 margin_right = 386.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 0, 45 )
@@ -73,14 +74,14 @@ margin_bottom = 31.0
 hint_tooltip = "Add color"
 icon = ExtResource( 4 )
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/Color List"]
+[node name="Bottom Panel" type="ScrollContainer" parent="UI/Color List"]
 margin_top = 49.0
 margin_right = 386.0
 margin_bottom = 586.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Colors List" type="GridContainer" parent="UI/Color List/ScrollContainer"]
+[node name="Colors List" type="GridContainer" parent="UI/Color List/Bottom Panel"]
 margin_right = 386.0
 margin_bottom = 537.0
 size_flags_horizontal = 3
@@ -97,8 +98,7 @@ margin_bottom = 580.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Mouse Picker" type="PanelContainer" parent="UI"]
-editor/display_folded = true
+[node name="Mouse Picker Wrapper" type="PanelContainer" parent="UI"]
 visible = false
 margin_left = 7.0
 margin_top = 7.0
@@ -107,25 +107,22 @@ margin_bottom = 593.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Mouse Picker"]
-editor/display_folded = true
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Mouse Picker Wrapper"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 379.0
 margin_bottom = 579.0
 
-[node name="MousePicker" parent="UI/Mouse Picker/VBoxContainer" instance=ExtResource( 6 )]
+[node name="MousePicker" parent="UI/Mouse Picker Wrapper/VBoxContainer" instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 372.0
 margin_bottom = 528.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-control = true
-saturation_speed = 0.005
-safe_margin = 25
+wrapper = NodePath("../..")
 
-[node name="Button" type="Button" parent="UI/Mouse Picker/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Mouse Picker Wrapper/VBoxContainer"]
 margin_top = 532.0
 margin_right = 372.0
 margin_bottom = 572.0

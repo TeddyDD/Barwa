@@ -1,5 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://controls/ColorView.gd" type="Script" id=1]
 [ext_resource path="res://images/picker.svg" type="Texture" id=2]
 [ext_resource path="res://images/precise.svg" type="Texture" id=3]
 [ext_resource path="res://images/test-pattern.png" type="Texture" id=4]
@@ -20,6 +21,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+editor/display_folded = true
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 393.0

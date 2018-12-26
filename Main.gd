@@ -1,67 +1,108 @@
 extends Control
 
-var ColorViewer = preload("res://controls/Color.tscn")
-var palette = Pallete.new(ColorViewer)
+const ColorView = preload("res://controls/Color.tscn")
 
+onready var palette = PalleteController.new(Palete.new())
 
-var picker : = false setget set_picker
-var precise_picker : = false setget set_precise_picker
-
-func set_picker(value : bool) -> void:
-	$"UI/Mouse Picker".visible = value
-	picker = value
+func _ready():
+	palette.list = $"UI/Color List/Bottom Panel/Colors List"
+	palette.edit_handler = self
 	
-func set_precise_picker(value : bool) -> void:
-	$"UI/Precise Picker".visible = value
-	precise_picker = value
+	var mp = $"UI/Mouse Picker Wrapper/VBoxContainer/MousePicker"
+	mp.connect("set_color", self, "set_color")
 
-# Create new color in palette
+
+func edit(id, old_color, precise):
+	var picker = set_picker(precise, true)
+	picker.id = id
+	picker.old_color = old_color
+	
+func set_color(id, color):
+	prints(id, color)
+	palette.set_color(id, color)
+	
+# makes picker visible and returns node
+func set_picker(precise, visible):
+	match precise:
+		false: 
+			$"UI/Mouse Picker Wrapper".visible = visible
+			return $"UI/Mouse Picker Wrapper/VBoxContainer/MousePicker"
+		true: 
+			$"UI/Precise Picker".visible = visible
+			return $"UI/Precise Picker"
+
+
+# signals
 
 func _on_New_pressed():
-	$"UI/Color List/ScrollContainer/Colors List".add_child(palette.add_color())
-	
-class Pallete:
-	var viewerClass
-	
-	# Hash id -> UserColor
-	var colors = {}
-	
-	var file = null
-	var _next_id : int = 0
-	
-	func _init(view):
-		self.viewerClass = view
-		
-	func add_color():
-		var color = Color()
-		var id = get_next_id()
-		var viewer = viewerClass.instance()
-		viewer.get_node("HBoxContainer/Remove").connect("pressed", self, "_on_color_removed", [id])
-		(viewer.get_node("HBoxContainer/Color field/ColorRect") as ColorRect).color = color
-		viewer.name = str(id)
-		self.colors[id] = {
-			color = color,
-			viewer = viewer
-		}
-		return viewer
+	palette.add_color()
 
-	func remove_color(id):
-		colors[id].viewer.queue_free()
-		colors[id] = null
+# classes
+
+class PalleteController:
+	var palette : Palete
+	var views = {}
 	
-	func _on_color_removed(id):
-		self.remove_color(id)
+	var list # place in node tree to add views
+	var edit_handler
+	
+	func _init(palette):
+		self.palette = palette
+	
+	func add_color():
+		var id = palette.add_color()
+		var color = palette.get_color(id)
 		
-	func get_next_id() -> int:
+		var view = ColorView.instance()
+		list.add_child(view)
+		view.id = id
+		view.color_rect.color = color
+		_register_view_signals(view, id)
+		views[id] = view
+	
+	func edit_color(id):
+		var c = palette.get_color(id)
+		edit_handler.edit(id, c, false)
+		
+	func set_color(id, color):
+		palette.set_color(id, color)
+		var view = views[id]
+		view.color_rect.color = color
+		
+		
+	func remove_color(id):
+		pass
+		
+	func _register_view_signals(view, id):
+		view.pick.connect("pressed", self, "edit_color", [id])
+	
+	func _unregister_view_signals(view, id):
+		view.pick.disconnect("pressed", self, "edit_color")
+
+class Palete:
+	var colors = {} # id -> color
+	var color_index = []
+	var _next_id = 0
+	
+	func get_next_id():
 		_next_id += 1
 		return _next_id
 	
+	func add_color():
+		var id = get_next_id()
+		var prev = color_index.back()
+		
+		color_index.append(id)
+		
+		colors[id] = Color() if not prev else Color(colors[prev].to_html())
+		return id
+	
+	func remove_color(id):
+		pass
+		
+	func get_color(id):
+		return colors[id]
+		
+	func set_color(id, color):
+		colors[id] = color
 
-class UserColor:
-	var color = null
-	var viewNode = null
-	var id
-	func _init(color : Color, id : int, view):
-		self.id = id
-		self.color = color
-		self.viewNode = view
