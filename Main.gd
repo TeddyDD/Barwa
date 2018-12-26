@@ -61,6 +61,10 @@ class PalleteController:
 		view.color_rect.color = color
 		_register_view_signals(view, id)
 		views[id] = view
+		return id
+		
+	func get_color(id):
+		return palette.get_color(id)
 
 	func edit_color(id, precise=false):
 		var c = palette.get_color(id)
@@ -72,7 +76,6 @@ class PalleteController:
 		view.color_rect.color = color
 
 	func swap_colors(id, other_id):
-		prints("swa[")
 		var v1 = views[id]
 		var v2 = views[other_id]
 		var idx1 = v1.get_index()

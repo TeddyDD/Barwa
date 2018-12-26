@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://images/load.svg" type="Texture" id=2]
 [ext_resource path="res://images/save.svg" type="Texture" id=3]
 [ext_resource path="res://images/add.svg" type="Texture" id=4]
-[ext_resource path="res://controls/PrecisePicker.tscn" type="PackedScene" id=5]
-[ext_resource path="res://controls/MousePicker.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Colors List.gd" type="Script" id=5]
+[ext_resource path="res://controls/PrecisePicker.tscn" type="PackedScene" id=6]
+[ext_resource path="res://controls/MousePicker.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -86,8 +87,9 @@ margin_right = 386.0
 margin_bottom = 537.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 5 )
 
-[node name="Precise Picker" parent="UI" instance=ExtResource( 5 )]
+[node name="Precise Picker" parent="UI" instance=ExtResource( 6 )]
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -113,7 +115,7 @@ margin_top = 7.0
 margin_right = 379.0
 margin_bottom = 579.0
 
-[node name="MousePicker" parent="UI/Mouse Picker Wrapper/VBoxContainer" instance=ExtResource( 6 )]
+[node name="MousePicker" parent="UI/Mouse Picker Wrapper/VBoxContainer" instance=ExtResource( 7 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 372.0
