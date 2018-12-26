@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://controls/ColorView.gd" type="Script" id=1]
 [ext_resource path="res://images/picker.svg" type="Texture" id=2]
 [ext_resource path="res://images/precise.svg" type="Texture" id=3]
 [ext_resource path="res://images/test-pattern.png" type="Texture" id=4]
-[ext_resource path="res://images/lerp.svg" type="Texture" id=5]
-[ext_resource path="res://images/remove.svg" type="Texture" id=6]
+[ext_resource path="res://controls/ColorPreviewRectangle.gd" type="Script" id=5]
+[ext_resource path="res://images/lerp.svg" type="Texture" id=6]
+[ext_resource path="res://images/remove.svg" type="Texture" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -21,7 +22,6 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-editor/display_folded = true
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 393.0
@@ -70,18 +70,19 @@ margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.921569, 0.0313726, 0.0313726, 0.862745 )
+script = ExtResource( 5 )
 
 [node name="Lerp below" type="Button" parent="HBoxContainer"]
 margin_left = 322.0
 margin_right = 352.0
 margin_bottom = 29.0
 hint_tooltip = "Linear interpolation with color below"
-icon = ExtResource( 5 )
+icon = ExtResource( 6 )
 
 [node name="Remove" type="Button" parent="HBoxContainer"]
 margin_left = 356.0
 margin_right = 386.0
 margin_bottom = 29.0
 hint_tooltip = "Remove color"
-icon = ExtResource( 6 )
+icon = ExtResource( 7 )
 
