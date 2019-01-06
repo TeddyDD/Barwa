@@ -22,6 +22,10 @@ boot_splash/image="res://images/splash.png"
 boot_splash/bg_color=Color( 0.8, 0.8, 0.8, 1 )
 config/icon="res://icon.png"
 
+[autoload]
+
+export="*res://export.gd"
+
 [display]
 
 window/size/width=400
