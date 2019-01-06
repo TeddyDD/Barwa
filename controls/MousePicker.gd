@@ -92,7 +92,7 @@ func _draw():
 	draw_texture_rect(color_checker, get_rect(), true)
 	draw_rect(get_rect(), color)
 	var p = mouse_pos if mouse_pos else get_local_mouse_position()
-	draw_circle(p, 3, color.inverted())
+	draw_circle(p, 3, color.contrasted())
 
 func _on_MousePicker_mouse_entered():
 	mouse = true
