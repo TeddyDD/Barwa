@@ -1,17 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://images/load.svg" type="Texture" id=2]
-[ext_resource path="res://images/save.svg" type="Texture" id=3]
-[ext_resource path="res://images/add.svg" type="Texture" id=4]
-[ext_resource path="res://Colors List.gd" type="Script" id=5]
-[ext_resource path="res://controls/PrecisePicker.tscn" type="PackedScene" id=6]
-[ext_resource path="res://controls/MousePicker.tscn" type="PackedScene" id=7]
+[ext_resource path="res://style/theme_dark.tres" type="Theme" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://images/load.svg" type="Texture" id=3]
+[ext_resource path="res://images/save.svg" type="Texture" id=4]
+[ext_resource path="res://images/add.svg" type="Texture" id=5]
+[ext_resource path="res://Colors List.gd" type="Script" id=6]
+[ext_resource path="res://controls/PrecisePicker.tscn" type="PackedScene" id=7]
+[ext_resource path="res://controls/MousePicker.tscn" type="PackedScene" id=8]
+[ext_resource path="res://images/opacity_tester.svg" type="Texture" id=9]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -26,10 +29,10 @@ __meta__ = {
 }
 
 [node name="Color List" type="VBoxContainer" parent="UI"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 393.0
-margin_bottom = 593.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 398.0
+margin_bottom = 598.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -37,59 +40,74 @@ __meta__ = {
 }
 
 [node name="Top Panel" type="PanelContainer" parent="UI/Color List"]
-editor/display_folded = true
-margin_right = 386.0
+margin_right = 396.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 0, 45 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Color List/Top Panel"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 379.0
-margin_bottom = 38.0
+editor/display_folded = true
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 394.0
+margin_bottom = 43.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Save" type="Button" parent="UI/Color List/Top Panel/HBoxContainer"]
 margin_right = 30.0
-margin_bottom = 31.0
+margin_bottom = 41.0
 hint_tooltip = "Save palette"
-icon = ExtResource( 2 )
+icon = ExtResource( 3 )
 
 [node name="Load" type="Button" parent="UI/Color List/Top Panel/HBoxContainer"]
 margin_left = 34.0
 margin_right = 64.0
-margin_bottom = 31.0
+margin_bottom = 41.0
 hint_tooltip = "Load palette"
-icon = ExtResource( 3 )
+icon = ExtResource( 4 )
 
 [node name="VSeparator" type="VSeparator" parent="UI/Color List/Top Panel/HBoxContainer"]
 margin_left = 68.0
 margin_right = 72.0
-margin_bottom = 31.0
+margin_bottom = 41.0
 
 [node name="New" type="Button" parent="UI/Color List/Top Panel/HBoxContainer"]
 margin_left = 76.0
 margin_right = 106.0
-margin_bottom = 31.0
+margin_bottom = 41.0
 hint_tooltip = "Add color"
-icon = ExtResource( 4 )
+icon = ExtResource( 5 )
+
+[node name="Copy Format" type="OptionButton" parent="UI/Color List/Top Panel/HBoxContainer"]
+margin_left = 110.0
+margin_right = 200.0
+margin_bottom = 41.0
+text = "Item 0"
+items = [ "Item 0", null, false, -1, null, "Item 1", null, false, -1, null ]
+selected = 0
 
 [node name="Bottom Panel" type="ScrollContainer" parent="UI/Color List"]
 margin_top = 49.0
-margin_right = 386.0
-margin_bottom = 586.0
+margin_right = 396.0
+margin_bottom = 472.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Colors List" type="GridContainer" parent="UI/Color List/Bottom Panel"]
-margin_right = 386.0
-margin_bottom = 537.0
+margin_right = 396.0
+margin_bottom = 423.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
-[node name="Precise Picker" parent="UI" instance=ExtResource( 6 )]
+[node name="Creator" type="PanelContainer" parent="UI/Color List"]
+margin_top = 476.0
+margin_right = 396.0
+margin_bottom = 596.0
+rect_min_size = Vector2( 0, 120 )
+size_flags_horizontal = 3
+
+[node name="Precise Picker" parent="UI" instance=ExtResource( 7 )]
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -101,6 +119,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Mouse Picker Wrapper" type="PanelContainer" parent="UI"]
+editor/display_folded = true
 visible = false
 margin_left = 7.0
 margin_top = 7.0
@@ -115,7 +134,7 @@ margin_top = 7.0
 margin_right = 379.0
 margin_bottom = 579.0
 
-[node name="MousePicker" parent="UI/Mouse Picker Wrapper/VBoxContainer" instance=ExtResource( 7 )]
+[node name="MousePicker" parent="UI/Mouse Picker Wrapper/VBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 372.0
@@ -123,6 +142,10 @@ margin_bottom = 528.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 wrapper = NodePath("../..")
+control = true
+saturation_speed = 0.005
+safe_margin = 25
+color_checker = ExtResource( 9 )
 
 [node name="Button" type="Button" parent="UI/Mouse Picker Wrapper/VBoxContainer"]
 margin_top = 532.0
@@ -130,5 +153,17 @@ margin_right = 372.0
 margin_bottom = 572.0
 rect_min_size = Vector2( 0, 40 )
 text = "Ok"
+
+[node name="FileDialog" type="FileDialog" parent="UI"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 393.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+resizable = true
+access = 2
+current_dir = "/home/teddy/Kod/godot3/Barwa"
+current_path = "/home/teddy/Kod/godot3/Barwa/"
 
 [connection signal="pressed" from="UI/Color List/Top Panel/HBoxContainer/New" to="." method="_on_New_pressed"]
