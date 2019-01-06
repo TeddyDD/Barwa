@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://controls/ColorView.gd" type="Script" id=1]
 [ext_resource path="res://images/picker.svg" type="Texture" id=2]
 [ext_resource path="res://images/precise.svg" type="Texture" id=3]
 [ext_resource path="res://images/opacity_tester.svg" type="Texture" id=4]
 [ext_resource path="res://controls/ColorPreviewRectangle.gd" type="Script" id=5]
-[ext_resource path="res://images/lerp.svg" type="Texture" id=6]
-[ext_resource path="res://images/remove.svg" type="Texture" id=7]
+[ext_resource path="res://images/remove.svg" type="Texture" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -25,29 +24,31 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 393.0
-margin_bottom = 36.0
-rect_min_size = Vector2( 360, 0 )
+margin_bottom = 47.0
+rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 2
 
 [node name="Pick" type="Button" parent="HBoxContainer"]
 margin_right = 33.0
-margin_bottom = 29.0
+margin_bottom = 40.0
 hint_tooltip = "Pick Color"
+button_mask = 3
 icon = ExtResource( 2 )
 
 [node name="Precise" type="Button" parent="HBoxContainer"]
 margin_left = 37.0
 margin_right = 67.0
-margin_bottom = 29.0
+margin_bottom = 40.0
 hint_tooltip = "Precise picker"
+button_mask = 3
 icon = ExtResource( 3 )
 
 [node name="Color field" type="PanelContainer" parent="HBoxContainer"]
 margin_left = 71.0
-margin_right = 318.0
-margin_bottom = 29.0
+margin_right = 352.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 0, 26 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -57,32 +58,26 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Color field"]
-margin_right = 247.0
-margin_bottom = 29.0
+margin_right = 281.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 stretch_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="HBoxContainer/Color field"]
-margin_right = 247.0
-margin_bottom = 29.0
+margin_right = 281.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.921569, 0.0313726, 0.0313726, 0.862745 )
 script = ExtResource( 5 )
 
-[node name="Lerp below" type="Button" parent="HBoxContainer"]
-margin_left = 322.0
-margin_right = 352.0
-margin_bottom = 29.0
-hint_tooltip = "Linear interpolation with color below"
-icon = ExtResource( 6 )
-
 [node name="Remove" type="Button" parent="HBoxContainer"]
 margin_left = 356.0
 margin_right = 386.0
-margin_bottom = 29.0
+margin_bottom = 40.0
 hint_tooltip = "Remove color"
-icon = ExtResource( 7 )
+button_mask = 3
+icon = ExtResource( 6 )
 
